@@ -9,4 +9,4 @@
 
 另外：
 
-1. 修改了 e2e\Wpf 代码。（这个是主要的学习之地）
+1. 修改了 e2e\Wpf\HelloWorld.sln 以及相关代码。（这个 HelloWorld 示例是主要的学习之地）
