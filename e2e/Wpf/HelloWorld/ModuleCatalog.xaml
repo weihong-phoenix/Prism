@@ -5,6 +5,9 @@
   <m:ModuleInfo Ref="file://Modules/HelloWorld.Modules.ModuleA.dll" 
                 ModuleName="ModuleAModule" 
                 ModuleType="HelloWorld.Modules.ModuleA.ModuleAModule, HelloWorld.Modules.ModuleA, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  <m:ModuleInfo Ref="file://Modules/HelloWorld.Modules.ModuleB.dll" 
+                ModuleName="ModuleBModule" 
+                ModuleType="HelloWorld.Modules.ModuleB.ModuleBModule, HelloWorld.Modules.ModuleB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
 
   <!--<m:ModuleInfoGroup Ref="Modules/HelloWorld.Modules.ModuleA.dll">
     <m:ModuleInfo  
