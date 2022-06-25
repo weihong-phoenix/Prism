@@ -11,15 +11,15 @@ namespace HelloWorld.Modules.ModuleA
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Debug.WriteLine("5-1-1. ModuleA.RegisterTypes");
-            containerRegistry.RegisterForNavigation<ViewA>();
+            Debug.WriteLine("6-1-1. ModuleA.RegisterTypes");
+            // containerRegistry.RegisterForNavigation<ViewA>();
         }
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Debug.WriteLine("5-1-2. ModuleA.OnInitialized");
-            //var regionManager = containerProvider.Resolve<IRegionManager>();
-            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
+            Debug.WriteLine("6-1-2. ModuleA.OnInitialized");
+            var regionManager = containerProvider.Resolve<IRegionManager>();
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
         }
     }
 }

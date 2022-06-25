@@ -7,7 +7,7 @@ namespace HelloWorld.Modules.ModuleA.Views
     /// <summary>
     /// Interaction logic for ViewA
     /// </summary>
-    [ViewSortHint("V1")]
+    [ViewSortHint("V3")]
     public partial class ViewA : UserControl
     {
         public ViewA()

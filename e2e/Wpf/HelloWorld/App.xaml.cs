@@ -4,6 +4,10 @@ using System.Windows;
 using Prism.Modularity;
 using HelloWorld.Modules.ModuleA;
 using HelloWorld.Modules.ModuleB;
+using Prism.Regions;
+using System.Diagnostics;
+using System.Windows.Controls.Primitives;
+using System.Windows.Controls;
 
 namespace HelloWorld
 {
@@ -26,6 +30,13 @@ namespace HelloWorld
         {
             moduleCatalog.AddModule<ModuleAModule>();
             moduleCatalog.AddModule<ModuleBModule>();
+        }
+
+        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
+        {
+            regionAdapterMappings.RegisterMapping<Selector, SelectorRegionAdapter>();
+            regionAdapterMappings.RegisterMapping<ItemsControl, ItemsControlRegionAdapter>();
+            regionAdapterMappings.RegisterMapping<ContentControl, ContentControlHintSortedRegionAdapter>();
         }
 
         //to test various module catalogs:

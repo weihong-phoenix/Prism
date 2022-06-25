@@ -217,6 +217,11 @@ namespace Prism.Regions
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
+                    // TESTCODE:
+                    {
+                        Debug.WriteLine($"### SourceCollectionChanged NotifyCollectionChangedAction.Add");
+                    }
+
                     this.UpdateFilteredItemsList();
                     foreach (ItemMetadata itemMetadata in e.NewItems)
                     {

@@ -1,10 +1,14 @@
 ﻿using HelloWorld.Views;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Regions;
 using Prism.Unity;
 
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Controls;
+
 using Unity;
 
 namespace HelloWorld
@@ -25,15 +29,24 @@ namespace HelloWorld
             moduleCatalog.AddModule<HelloWorld.Modules.ModuleB.ModuleBModule>();
         }
 
+        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
+        {
+            Debug.WriteLine("3 ConfigureRegionAdapterMappings");
+
+            regionAdapterMappings.RegisterMapping<Selector, SelectorRegionAdapter>();
+            regionAdapterMappings.RegisterMapping<ItemsControl, ItemsControlRegionAdapter>();
+            regionAdapterMappings.RegisterMapping<ContentControl, ContentControlHintSortedRegionAdapter>();
+        }
+
         protected override DependencyObject CreateShell()
         {
-            Debug.WriteLine("3. CreateShell");
+            Debug.WriteLine("4. CreateShell");
             return Container.Resolve<MainWindow>();
         }
 
         protected override void InitializeShell(DependencyObject shell)
         {
-            Debug.WriteLine("4. InitializeShell");
+            Debug.WriteLine("5. InitializeShell");
             Shell = shell;
         }
 
@@ -42,7 +55,7 @@ namespace HelloWorld
         /// </summary>
         protected override void InitializeModules()
         {
-            Debug.WriteLine("5. InitializeModules");
+            Debug.WriteLine("6. InitializeModules");
             base.InitializeModules();
             // PrismInitializationExtensions.RunModuleManager(Container);
         }
@@ -52,7 +65,7 @@ namespace HelloWorld
         /// </summary>
         protected override void OnInitialized()
         {
-            Debug.WriteLine("6. OnInitialized");
+            Debug.WriteLine("7. OnInitialized");
             if (Shell is Window window)
                 window.Show();
         }
