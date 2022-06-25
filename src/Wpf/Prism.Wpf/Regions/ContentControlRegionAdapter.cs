@@ -3,6 +3,7 @@
 using Prism.Properties;
 using System;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 
 #if HAS_UWP
@@ -64,6 +65,11 @@ namespace Prism.Regions
                         region.Activate(e.NewItems[0]);
                     }
                 };
+
+            // TESTCODE:
+            {
+                Debug.WriteLine($"### ContentControlRegionAdapter.Adapt, region is {region}, regionTarget is {regionTarget}");
+            }
         }
 
         /// <summary>

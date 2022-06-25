@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Prism.Regions
@@ -275,6 +276,16 @@ namespace Prism.Regions
         {
             this.filteredItems = this.subjectCollection.Where(i => this.filter(i)).Select(i => i.Item)
                 .OrderBy<object, object>(o => o, new RegionItemComparer(this.SortComparison)).ToList();
+
+            // TESTCODE:
+            {
+                Debug.Write($"### filteredItems count = {filteredItems.Count()}: ");
+                foreach (var view in filteredItems)
+                {
+                    Debug.Write($" {view.GetType()}; ");
+                }
+                Debug.WriteLine("");
+            }
         }
 
         private class MonitorInfo

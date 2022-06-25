@@ -3,6 +3,7 @@
 using HelloWorld.Modules.ModuleA.Views;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Regions;
 
 namespace HelloWorld.Modules.ModuleA
 {
@@ -17,6 +18,8 @@ namespace HelloWorld.Modules.ModuleA
         public void OnInitialized(IContainerProvider containerProvider)
         {
             Debug.WriteLine("5-1-2. ModuleA.OnInitialized");
+            //var regionManager = containerProvider.Resolve<IRegionManager>();
+            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(ViewA));
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using Prism.Properties;
 using Prism.Ioc;
+using System.Diagnostics;
 
 #if HAS_UWP
 using Windows.UI.Xaml;
@@ -117,6 +118,16 @@ namespace Prism.Regions
                     };
                 }
 
+                // TESTCODE:
+                {
+                    Debug.Write($"### Views count = {_views.Count()}: ");
+                    foreach (var view in _views)
+                    {
+                        Debug.Write(view.GetType());
+                    }
+                    Debug.WriteLine("");
+                }
+
                 return _views;
             }
         }
@@ -143,6 +154,16 @@ namespace Prism.Regions
                     {
                         SortComparison = _sort
                     };
+                }
+
+                // TESTCODE:
+                {
+                    Debug.Write($"### ActiveViews count = {_activeViews.Count()}: ");
+                    foreach (var view in _activeViews)
+                    {
+                        Debug.Write($" {view.GetType()}; ");
+                    }
+                    Debug.WriteLine("");
                 }
 
                 return _activeViews;
@@ -447,7 +468,14 @@ namespace Prism.Regions
                     ViewSortHintAttribute xAttribute = xType.GetCustomAttributes(typeof(ViewSortHintAttribute), true).FirstOrDefault() as ViewSortHintAttribute;
                     ViewSortHintAttribute yAttribute = yType.GetCustomAttributes(typeof(ViewSortHintAttribute), true).FirstOrDefault() as ViewSortHintAttribute;
 
-                    return ViewSortHintAttributeComparison(xAttribute, yAttribute);
+                    var ret = ViewSortHintAttributeComparison(xAttribute, yAttribute);
+
+                    // TESTCODE:
+                    {
+                        var sign = ret == 0 ? "=" : (ret > 0 ? ">" : "<");
+                        Debug.WriteLine($"### ret = {ret}, {xType}:{xAttribute.Hint} {sign} {yType}:{yAttribute.Hint}");
+                    }
+                    return ret;
                 }
             }
         }

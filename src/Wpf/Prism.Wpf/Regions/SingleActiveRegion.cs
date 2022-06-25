@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 
 namespace Prism.Regions
@@ -22,6 +23,11 @@ namespace Prism.Regions
                 base.Deactivate(currentActiveView);
             }
             base.Activate(view);
+
+            // TESTCODE:
+            {
+                Debug.WriteLine($"### SingleActiveRegion.Activate, view is {view}, currentActiveView is {currentActiveView}");
+            }
         }
     }
 }

@@ -3,6 +3,7 @@
 using Prism.Properties;
 using Prism.Regions.Behaviors;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 
 #if HAS_UWP
@@ -56,6 +57,12 @@ namespace Prism.Regions
             this.Adapt(region, regionTarget);
             this.AttachBehaviors(region, regionTarget);
             this.AttachDefaultBehaviors(region, regionTarget);
+
+            // TESTCODE:
+            {
+                Debug.WriteLine($"### RegionAdapterBase.Initialize, regionTarget is {regionTarget}, regionName is {regionName}");
+            }
+
             return region;
         }
 
