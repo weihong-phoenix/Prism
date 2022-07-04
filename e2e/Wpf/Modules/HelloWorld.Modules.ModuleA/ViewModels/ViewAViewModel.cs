@@ -2,39 +2,33 @@
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using HelloWorld.Core;
+using HelloWorld.Modules.ModuleA.Views;
 
 namespace HelloWorld.Modules.ModuleA.ViewModels
 {
     public class ViewAViewModel : BindableBase
     {
-        private string _message;
+        private readonly IDialogService _dialogService;
+
+        public ViewAViewModel(IDialogService dialogService)
+        {
+            _dialogService = dialogService;
+        }
+
         public string Message
         {
             get { return _message; }
             set { SetProperty(ref _message, value); }
         }
+        private string _message = "Hello from ViewA in Module A";
 
+        public DelegateCommand ShowDialogCommand => _showDialogCommand ??= new DelegateCommand(ShowDialog);
         private DelegateCommand _showDialogCommand;
-        private readonly IDialogService _dialogService;
 
-        public DelegateCommand ShowDialogCommand =>
-            _showDialogCommand ?? (_showDialogCommand = new DelegateCommand(ExecuteShowDialogCommand));
-
-        void ExecuteShowDialogCommand()
+        void ShowDialog()
         {
-            _dialogService.ShowNotification("Hello There!", r =>
-            {
-                if (r.Result == ButtonResult.OK)
-                    Message = "OK was clicked";
-                else
-                    Message = "Something else was clicked";
-            });
-        }
-
-        public ViewAViewModel(IDialogService dialogService)
-        {
-            Message = "Hello from ViewA in Module A";
-            _dialogService = dialogService;
+            _dialogService.ShowDialog<MyDialog>();
+            // _dialogService.ShowDialog("MyDialog", null, null);
         }
     }
 }

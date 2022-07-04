@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 
+using HelloWorld.Modules.ModuleA.ViewModels;
 using HelloWorld.Modules.ModuleA.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -12,6 +13,8 @@ namespace HelloWorld.Modules.ModuleA
         {
             Debug.WriteLine("5-1-1. ModuleA.RegisterTypes");
             containerRegistry.RegisterForNavigation<ViewA>();
+
+            containerRegistry.RegisterDialog<MyDialog, MyDialogViewModel>();
         }
 
         public void OnInitialized(IContainerProvider containerProvider)

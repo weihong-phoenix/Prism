@@ -5,6 +5,12 @@ namespace HelloWorld.Core
 {
     public static class DialogServiceExtensions
     {
+        public static void ShowDialog<T>(this IDialogService dialogService)
+        {
+            string name = typeof(T).Name;
+            dialogService.ShowDialog(name, null, null);
+        }
+
         public static void ShowNotification(this IDialogService dialogService, string message, Action<IDialogResult> callBack)
         {
             dialogService.ShowDialog("NotificationDialog", new DialogParameters($"message={message}"), callBack);
